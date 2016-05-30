@@ -1,0 +1,43 @@
+{
+  "name": "node-test-project",
+  "version": "1.0.0",
+  "description": "node js test",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrproper1337/node-test.git"
+  },
+  "author": "Nazar Rudenko <roodenko.nazar@gmail.com>",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.1",
+    "chai": "~1.9.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "~4.4.2",
+    "express-session": "^1.13.0",
+    "express3-handlebars": "~0.5.0",
+    "mongoose": "^4.4.19",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "~1.0.0",
+    "path": "^0.12.7",
+    "socket.io": "^1.4.6"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cafe-mocha": "^0.1.12",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-exec": "^0.4.5",
+    "mocha": "~1.20.1",
+    "zombie": "~2.0.0-alpha31"
+  },
+  "bugs": {
+    "url": "https://github.com/mrproper1337/node-test/issues"
+  },
+  "homepage": "https://github.com/mrproper1337/node-test#readme",
+  "license": "ISC"
+}
