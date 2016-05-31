@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        title node Test
+        link(rel='stylesheet', href='/stylesheets/chat.css')
+    body
+        span(hidden)#userName #{user.firstName}
+        h1.text-center.login-title Welcome #{user.firstName}
+        a(href='/signout', class='text-center new-account') Sign Out
+        ul#messages
+            form
+                input#m(autocomplete=off)
+                button send
+        script(src="/socket.io/socket.io.js")
+        script(src="/js/libs/jquery/dist/jquery.min.js")
+        script(src="/js/chat.js")
