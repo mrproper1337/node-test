@@ -8,6 +8,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var api = require('./routes/api.js');
 var dbConfig = require('./db');
 var mongoose = require('mongoose');
 // Connect to DB
@@ -41,6 +42,15 @@ initPassport(passport);
 
 var routes = require('./routes/index')(passport);
 app.use('/', routes);
+
+
+// JSON API
+app.get('/api/messages', api.messages);
+
+app.get('/api/message/:id', api.message);
+app.post('/api/message', api.addMessage);
+//app.put('/api/message/:id', api.editPost);
+app.delete('/api/message/:id', api.deleteMessage);
 
 
 /// catch 404 and forward to error handler

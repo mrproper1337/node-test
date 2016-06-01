@@ -2,7 +2,7 @@
   "name": "node-test-project",
   "version": "1.0.0",
   "description": "node js test",
-  "main": "app.js",
+  "main": "www.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
