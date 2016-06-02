@@ -1,0 +1,15 @@
+web:
+  build: .
+  links:
+    - mongo
+  ports:
+    - 3000
+mongo:
+  image: mongo
+  ports:
+    - 27017
+    - 28017
+  environment:
+    MONGODB_USER: "amdin"
+    MONGODB_DATABASE: "node_test"
+    MONGODB_PASS: "qwerty"

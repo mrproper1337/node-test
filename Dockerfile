@@ -1,17 +1,16 @@
-FROM node:6.20
+FROM node:argon
 # Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir /node-test
+WORKDIR /node-test
 
 # Install app dependencies
-COPY package.json /usr/src/app/
-COPY .bowerrc /usr/src/app/
+COPY package.json /node-test
 RUN npm install
-RUN bower install angular
-RUN bower install angular.js
+RUN npm install --global bower
+RUN bower --allow-root install angular.js
 
 # Bundle app source
-COPY . /usr/src/app
+ADD . /node-test
 
 EXPOSE 3000
 CMD [ "npm", "start" ]
