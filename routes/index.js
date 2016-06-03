@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var dbConfig = require('../db');
+var mongoose = require('mongoose');
 
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler 
@@ -10,13 +12,24 @@ var isAuthenticated = function (req, res, next) {
 	// if the user is not authenticated then redirect him to the login page
 	res.redirect('/');
 };
-
+var dbConnected = false;
 module.exports = function(passport){
 
 	/* GET login page. */
 	router.get('/', function(req, res) {
     	// Display the Login page with any flash message, if any
 		res.render('index', { message: req.flash('message') });
+        //dbConfig.url = 1;
+
+        if(!dbConnected){
+            var ip = req.ip.split(':')[req.ip.split(':').length-1];
+            dbConfig.url = 'mongodb://'+ip+':27017/node-test';// get host ip into url
+            mongoose.connect(dbConfig.url);
+            dbConnected = true;
+        }
+
+		console.log('ip = '+req.ip.split(':')[req.ip.split(':').length-1]);
+
 	});
 
     /* Handle Login POST */

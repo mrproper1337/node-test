@@ -1,4 +1,4 @@
-FROM node:argon
+FROM node:latest
 # Create app directory
 RUN mkdir /node-test
 WORKDIR /node-test

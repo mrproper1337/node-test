@@ -9,10 +9,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var api = require('./routes/api.js');
-var dbConfig = require('./db');
-var mongoose = require('mongoose');
-// Connect to DB
-mongoose.connect(dbConfig.url);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
