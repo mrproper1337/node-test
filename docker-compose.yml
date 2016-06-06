@@ -2,10 +2,3 @@ web:
   build: .
   ports:
       - "3000:3000"
-  links:
-    - mongo
-mongo:
-  image: mongo:latest
-  ports:
-        - "27017:27017"
-  command: "--smallfiles"
