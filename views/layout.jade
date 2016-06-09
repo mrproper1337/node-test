@@ -6,5 +6,20 @@ html
     title Node test app
     link(rel='stylesheet', href='/stylesheets/main.css')
     link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+    if showTests
+      link(rel = 'stylesheet', href = 'https://cdnjs.cloudflare.com/ajax/libs/mocha/2.5.3/mocha.css')
   body
     block content
+        if showTests
+            div.mocha
+                script(src="/vendor/mocha.js")
+                script(src="/vendor/chai.js")
+                script.
+                    mocha.ui('tdd');
+                    var assert = chai.assert;
+                script(src="/qa/tests-global.js")
+                if pageTestScript
+                    script(src=pageTestScript)
+                script.
+                    mocha.run();
+        h1.text-center.login-title Welcome #{user.firstName}

@@ -1,6 +1,5 @@
   web:
-    build: .
-    #image: mrproper1337/node-test
+    image: mrproper1337/node-test
     ports:
         - "3000:3000"
     links:

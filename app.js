@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // Configuring Passport
 var passport = require('passport');
 var expressSession = require('express-session');
@@ -35,6 +36,13 @@ app.use(passport.session());
  // and displaying in templates
 var flash = require('connect-flash');
 app.use(flash());
+
+// set 'showTests' context property if the querystring contains test=1
+app.use(function(req, res, next){
+    res.locals.showTests = app.get('env') !== 'production' &&
+        req.query.test === '1';
+    next();
+});
 
 // Initialize Passport
 var initPassport = require('./passport/init');

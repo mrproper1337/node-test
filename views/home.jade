@@ -3,7 +3,21 @@ html(ng-app='main')
     head
         title node Test
         link(rel='stylesheet', href='/stylesheets/chat.css')
-    body(ng-controller='messageCtrl')
+        if showTests
+            link(rel = 'stylesheet', href = 'https://cdnjs.cloudflare.com/ajax/libs/mocha/2.5.3/mocha.css')
+    body(ng-controller='messageCtrl' ng-init='init()')
+        if showTests
+            div.mocha
+                script(src="/vendor/mocha.js")
+                script(src="/vendor/chai.js")
+                script.
+                    mocha.ui('tdd');
+                    var assert = chai.assert;
+                script(src="/qa/tests-unit.js")
+                if pageTestScript
+                    script(src=pageTestScript)
+                script.
+                    mocha.run();
         h1.text-center.login-title Welcome #{user.firstName}
         script.
             var user = '#{user.firstName}';
@@ -19,10 +33,13 @@ html(ng-app='main')
 
             button send
         script(src="/socket.io/socket.io.js")
-        script(src="..//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js")
-        script(src='..//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular-route.min.js')
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js')
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js')
         script(src='/js/app.js')
         script(src='/js/services.js')
         script(src='/js/controllers.js')
         script(src='/js/filters.js')
         script(src='/js/directives.js')
+
+
+

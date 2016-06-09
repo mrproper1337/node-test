@@ -4,12 +4,20 @@
 
 angular.module('main.controllers', []).
 controller('messageCtrl', function ($scope, $http) {
+    var socket = io();
     $scope.messages  =[];
     $scope.send = {
         username:user,
         text:''
     };
-    var getMessage = function(){
+    $scope.init = function(){
+        $scope.addMessage({
+            username:user+' connected',
+            text:'  '
+        });
+        $scope.getMessages();
+    };
+    $scope.getMessages = function(){
         $http({
             method: 'GET',
             url: '/api/messages'
@@ -22,10 +30,8 @@ controller('messageCtrl', function ($scope, $http) {
             console.error('/api/messages error');
         });
     };
-    getMessage();
-    var socket = io();
-    socket.on('chat message', function (msg) {
-        $scope.messages.push(msg);
+    socket.on('chat message', function () {
+        $scope.getMessages();
     });
     $scope.addMessage = function(send){
         $http({
@@ -35,12 +41,12 @@ controller('messageCtrl', function ($scope, $http) {
         }).
         success(function () {
             console.log('/api/message success');
-            socket.emit('chat message', send);
-            getMessage();
+            socket.emit('chat message');
             send.text = '';
         }).
         error(function () {
             console.error('/api/message error');
+            send.text = 'ERROR!';
         });
     }
 });
