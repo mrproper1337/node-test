@@ -2,17 +2,21 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var dbConfig = require('./db');
+var mongoose = require('mongoose');
 
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var api = require('./routes/api.js');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+//connect db
+mongoose.connect(dbConfig.url);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
