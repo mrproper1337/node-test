@@ -23,7 +23,7 @@ module.exports = function(passport){
 
         if(!dbConnected){
             var ip = req.ip.split(':')[req.ip.split(':').length-1];
-            dbConfig.url = 'mongodb://'+ip+':27017/node-test';// get host ip into url
+            dbConfig.url = 'mongodb://'+ip+':8080/node-test';// get host ip into url
             mongoose.connect(dbConfig.url);
             dbConnected = true;
         }
